@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="D:/ehcache" />
+	<!-- DefaultCache setting. -->
+	<!-- maxElementsInMemory：设置基于内存的缓存可存放对象的最大数目。  -->
+	<!-- eternal：如果为true，表示对象永远不会过期，此时会忽略timeToIdleSeconds和timeToLiveSeconds属性，默认为false; -->
+	<!-- timeToIdleSeconds： 设定允许对象处于空闲状态的最长时间，以秒为单位。当对象自从最近一次被访问后，如果处于空闲状态的时间超过了 -->
+	<!-- timeToIdleSeconds属性值，这个对象就会过期。当对象过期，EHCache将把它从缓存中清空。只有当eternal属性为false，该属性才有效。 -->
+	<!-- 如果该属性值为0，则表示对象可以无限期地处于空闲状态。  -->
+	<!-- timeToLiveSeconds：设定对象允许存在于缓存中的最长时间，以秒为单位。当对象自从被存放到缓存中后，
+		如果处于缓存中的时间超过了 timeToLiveSeconds属性值，这个对象就会过期。当对象过期，EHCache将把它从缓存中清除。
+		只有当eternal属性为false，该属性才有效。如果该属性值为0，则表示对象可以无限期地存在于缓存中。
+		timeToLiveSeconds必须大于timeToIdleSeconds属性，才有意义。  -->
+     <defaultCache
+            maxElementsInMemory="1000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="1000000"
+            overflowToDisk="true" 
+            memoryStoreEvictionPolicy="LRU">
+            
+    </defaultCache>
+
+	<!-- Special objects setting. -->
+
+	<cache 
+	     name="com.springdemo.dao.AppPackage"
+		 maxElementsInMemory="2"
+		 memoryStoreEvictionPolicy="LRU" 
+		 eternal="true" 
+		 diskPersistent="false"
+		 overflowToDisk="false" 
+		 maxElementsOnDisk="1000000" /> 
+
+
+
+</ehcache>

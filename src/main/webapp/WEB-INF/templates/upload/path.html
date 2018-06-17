@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>upload</title>
+</head>
+<body>
+	<div>
+		<table class="example">
+		<caption>pathInfo</caption>
+			<tbody>
+				<tr>
+				    <td>realPath</td>
+				    <td th:text="${realPath}">realPath</td>
+				</tr>
+				<tr>
+				    <td>servletPath</td>
+				    <td th:text="${servletPath}">servletPath</td>
+				</tr>
+				<tr>
+				    <td>contextPath</td>
+				    <td th:text="${contextPath}">contextPath</td>
+				</tr>
+				<tr>
+				    <td>requestURL</td>
+				    <td th:text="${requestURL}">requestURL</td>
+				</tr>
+				<tr>
+				    <td>webRoot</td>
+				    <td th:text="${webRoot}">webRoot</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+#Mybatis中的association用法
+https://blog.csdn.net/hbtj_1216/article/details/52876201
+
+#springmvc缓存和mybatis缓存
+https://www.cnblogs.com/skyer5217/p/6699420.html
+
+#你真的会用Mybatis的缓存么，不知道原理的话，容易踩坑哦
+https://www.jianshu.com/p/c553169c5921
+
+#Spring+SpringMVC+Mybatis+Maven+Mysql框架搭建与分页实例 
+https://github.com/appleappleapple/ssm_project
+对应的是doc/example下的ssm_project-master.zip
+
+#SSM+Maven项目使用PageHelper分页插件的方法
+https://jingyan.baidu.com/article/b907e62784c48446e7891c90.html
+
+#史上最全的java spring注解，没有之一
+https://blog.csdn.net/achenyuan/article/details/72786759
+
+#MyBatis多参数传递的四种方式
+https://blog.csdn.net/Victor_Cindy1/article/details/50195545
+
+#云收藏 - 让收藏更简单
+https://github.com/cloudfavorites/favorites-web
+git@github.com:cloudfavorites/favorites-web.git
+
+https://blog.csdn.net/sinat_32873711/article/details/53976177seckill.zip文件http://www.baikeyang.com/code/96781.htmls2sm.zip文件https://github.com/zpf2012/SpringMybatisSpringMVCSpringMybatisSpringMVC-master.zip文件https://github.com/wangyang135/SpringMVC_Spring_MybatisSpringMVC_Spring_Mybatis-matter.zip文件

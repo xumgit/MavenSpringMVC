@@ -1,0 +1,15 @@
+<html  xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8" />
+<title>addForm</title>
+</head>
+<body>
+	<div th:text="${firstname}">firstname</div>
+	<div th:text="${secondname}">secondname</div>
+	<div th:text="${age}">age</div>
+	<div th:text="${height} + 'cm'">height</div>
+	<div th:text="${birthday}">birthday</div>
+	
+	<div th:text="${user.firstname}">firstname</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/blog.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>SpringMVC + Mybatis + Spring</title>
+</head>
+<body>
+		<div>
+        <table id="example1">
+		 <caption>BlogAnother</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>title</th>
+					<th>mainbody</th>
+					<th>creattime</th>
+					<th>authorname</th>
+					<th>authoremail</th>
+					<th>commentcontent</th>
+					<th>commenttime</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="blogView,blogViewStat:${blogViewExtend}">
+				    <td th:text="${blogViewStat.count}">1</td>
+				    <td th:text="${blogViewStat.index}">0</td>
+					<td th:text="${blogView.blog_title}">title</td>
+					<td th:text="${blogView.blog_mainbody}">mainbody</td>
+					<td th:text="${blogView.blog_creattime}">creattime</td>					
+					<td th:text="${blogView.author_name}">authorname</td>
+					<td th:text="${blogView.author_email}">authoremail</td>
+					<td th:text="${blogView.comment_content}">commentcontent</td>
+					<td th:text="${blogView.comment_creattime}">commenttime</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

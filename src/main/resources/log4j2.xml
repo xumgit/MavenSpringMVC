@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF" monitorInterval="1800">
+    <properties>
+        <!--<property name="LOG_HOME">${sys:catalina.home}/logs</property>-->
+        <property name="LOG_HOME">D:/logs</property>
+        <property name="FILE_NAME">tomcat_stdout</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+
+        <RollingRandomAccessFile name="DevLog" fileName="${LOG_HOME}/${FILE_NAME}"  
+            filePattern="${LOG_HOME}/${FILE_NAME}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>  
+        </RollingRandomAccessFile>
+        
+        <!-- <File name="FileAppender" fileName="D:/logs/app.log">  
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />  
+        </File>  -->
+        
+       <!--  <File name="LogFile" fileName="${web:rootDir}/logs/app.log" advertise="true">
+            <PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
+        </File> -->
+    </Appenders>
+    <Loggers>
+
+        <!-- <Logger name="com.cssweb.test.app" level="trace" additivity="true"> 
+            <AppenderRef ref="running-log" /> </Logger> -->
+
+        <Root level="debug">
+            <!-- 这里是输入到文件，很重要-->
+            <AppenderRef ref="DevLog" />
+            <!-- 这里是输入到控制台-->
+            <AppenderRef ref="Console" />
+            
+            <!-- <AppenderRef ref="FileAppender" />
+            <AppenderRef ref="LogFile" /> -->
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springdemo.dao.BlogMapper" >
+  <!-- <cache type="com.sanyue.utils.BatisCache"/> -->
+  <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+  <resultMap id="BaseResultMap" type="com.springdemo.pojo.Blog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="authorid" property="authorid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="creattime" property="creattime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.springdemo.pojo.Blog" extends="BaseResultMap" >
+    <result column="mainbody" property="mainbody" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, authorid, title, creattime
+  </sql>
+  <sql id="Blob_Column_List" >
+    mainbody
+  </sql>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+   	select 
+  <include refid="Base_Column_List" />
+    ,
+  <include refid="Blob_Column_List" />
+    from blog
+  </select>
+  <select id="selectAllByList" resultMap="ResultMapWithBLOBs">
+   	select 
+  <include refid="Base_Column_List" />
+    ,
+  <include refid="Blob_Column_List" />
+    from blog
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   
+  <resultMap id="blogResult" type="com.springdemo.pojoextend.BlogExtend">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="authorid" property="authorid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="mainbody" property="mainbody" jdbcType="LONGVARCHAR" />
+    <result column="creattime" property="creattime" jdbcType="VARCHAR" />
+    <association property="author" column="authorid" javaType="com.springdemo.pojo.Author" 
+    			 select="com.springdemo.dao.AuthorMapper.selectByPrimaryKey"/>
+  	<association property="comment" column="id" javaType="com.springdemo.pojo.Comment" 
+  				 select="com.springdemo.dao.CommentMapper.selectByBlogId"/>
+  </resultMap>
+  <select id="selectBlog" resultMap="blogResult" parameterType="java.lang.Integer">
+    select * from blog where id = #{id}
+  </select>
+  
+  <resultMap id="blogResult2" type="BlogViewExtend">
+    <id column="blog_id" property="blog_id" jdbcType="INTEGER" />
+    <result column="blog_author_id" property="blog_author_id" jdbcType="INTEGER" />
+    <result column="blog_title" property="blog_title" jdbcType="VARCHAR" />
+    <result column="blog_mainbody" property="blog_mainbody" jdbcType="LONGVARCHAR" />
+    <result column="blog_creattime" property="blog_creattime" jdbcType="VARCHAR" />
+    <result column="author_name" property="author_name" jdbcType="VARCHAR" />
+    <result column="author_email" property="author_email" jdbcType="VARCHAR" />
+  	<result column="comment_content" property="comment_content" jdbcType="LONGVARCHAR" />
+  	<result column="comment_creattime" property="comment_creattime" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectBlogByAnother" resultMap="blogResult2" parameterType="java.lang.Integer">
+    select  
+    	a.name as author_name, a.email as author_email, 
+    	b.id as blog_id, b.authorid as blog_author_id, b.title as blog_title, 
+    	b.mainbody as blog_mainbody, b.creattime as blog_creattime,
+    	c.content as comment_content, c.creattime as comment_creattime 	
+    from 
+    	author a, blog b, comment c 
+    where b.id=#{id} and a.id = b.authorid and c.blogid = b.id 
+  </select>
+   
+  <resultMap id="blogResult3" type="BlogExtend">
+  	<id property="id" column="blog_id" />	
+  	<result property="authorid" column="blog_author_id"/>
+  	<result property="title" column="blog_title"/>
+  	<result property="creattime" column="blog_creattime"/>
+  	<association property="author" javaType="Author" resultMap="authorResult3"/>
+  	<association property="comment" javaType="Comment" resultMap="commentResult3"/>
+  </resultMap>
+  <resultMap id="authorResult3" type="Author">
+  	<id property="id" column="author_id"/>
+  	<result property="name" column="author_name"/>
+  	<result property="email" column="author_email"/>
+  </resultMap>
+  <resultMap id="commentResult3" type="Comment">
+  	<result property="content" column="comment_content"/>
+  	<result property="creattime" column="comment_creattime"/>
+  </resultMap>
+  <select id="selectBlogByThree" resultMap="blogResult3" parameterType="java.lang.Integer">
+  	select
+  	    A.id            as author_id,
+    	A.name          as author_name,
+    	A.email         as author_email,
+    	B.id            as blog_id,
+    	B.title         as blog_title,
+    	B.authorid      as blog_author_id,
+    	B.creattime     as blog_creattime,
+    	C.content       as comment_content, 
+    	C.creattime     as comment_creattime
+  	from blog B left join author A on B.authorid = A.id
+  	            left join comment C on C.blogid = B.id
+  	where B.id = #{id}
+  </select>
+  
+  <resultMap id="blogResult4" type="BlogExtend">
+  	<id property="id" column="blog_id" />	
+  	<result property="authorid" column="blog_author_id"/>
+  	<result property="title" column="blog_title"/>
+  	<result property="creattime" column="blog_creattime"/>
+  	<collection property="author" ofType="Author">
+  		<id property="id" column="author_id"/>
+  		<result property="name" column="author_name"/>
+  		<result property="email" column="author_email"/>
+  	</collection>
+  	<collection property="comment" ofType="Comment">
+  		<result property="content" column="comment_content"/>
+  		<result property="creattime" column="comment_creattime"/>
+  	</collection>
+  </resultMap>
+  <select id="selectBlogByFour" resultMap="blogResult4" parameterType="java.lang.Integer">
+  	select
+  	    A.id            as author_id,
+    	A.name          as author_name,
+    	A.email         as author_email,
+    	B.id            as blog_id,
+    	B.title         as blog_title,
+    	B.authorid      as blog_author_id,
+    	B.creattime     as blog_creattime,
+    	C.content       as comment_content, 
+    	C.creattime     as comment_creattime
+  	from blog B left join author A on B.authorid = A.id
+  	            left join comment C on C.blogid = B.id
+  	where B.id = #{id}
+  </select>
+   
+  <select id="selectBlogByDynamicSQL1" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
+  	select * from blog where id=#{id, jdbcType=INTEGER}
+  	<!-- 使用if语句判断传过来的内容 -->
+  	<if test="title != null">
+    	and title like #{title, jdbcType=VARCHAR}
+    </if>
+    <if test="authorid != null and mainbody != null">
+    	or mainbody like #{mainbody, jdbcType=LONGVARCHAR}
+    </if>
+    
+    <!-- 使用choose语句判断字段是否为空 -->
+    <!--  <choose>
+    	<when test="title != null">
+      		and title like #{title, jdbcType=VARCHAR}
+    	</when>
+    	<when test="authorid != null and mainbody != null">
+      		and mainbody like #{mainbody, jdbcType=LONGVARCHAR}
+    	</when>
+    	<otherwise>
+      		and authorid = 1
+    	</otherwise>
+  	</choose> -->
+  </select>
+  <select id="selectBlogByDynamicSQL2" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
+  	select * from blog
+  	<!-- 使用where语句判断传过来的内容-->
+  	<where> 
+    	<if test="title != null">
+        	title like #{title, jdbcType=VARCHAR}
+    	</if>
+    	<if test="authorid != null and mainbody != null">
+        	or mainbody like #{mainbody, jdbcType=LONGVARCHAR}
+    	</if>
+    </where>
+  </select>
+  <select id="selectBlogByDynamicSQL3" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
+  	select * from blog
+  	<!-- 使用trim语句判断传过来的内容, 而且这样可以防止sql语句最后的拼接错误 -->
+  	<trim prefix="where (" suffix=")" prefixOverrides="AND |OR "> 
+    	<if test="title != null">
+        	and title like #{title, jdbcType=VARCHAR}
+      	</if>
+      	<if test="mainbody != null">
+        	or mainbody is not null
+      	</if>
+      	<if test="authorid != null">
+        	or authorid = #{authorid, jdbcType=INTEGER}
+      	</if> 
+    </trim>
+  </select>
+  <update id="updateBlogByDynamicSQL4" parameterType="java.util.Map">
+  	update blog
+  	<!-- 使用set语句判断传过来的内容, 而且这样可以防止sql语句最后的拼接错误, 例如去除拼接语句的最后一个逗号 -->
+  	<trim prefix="set" suffixOverrides=","> 
+      	<if test="title != null">
+        	title = #{title, jdbcType=VARCHAR},
+      	</if>
+      	<if test="mainbody != null">
+        	mainbody = #{mainbody, jdbcType=LONGVARCHAR}
+    	</if>
+    </trim>
+    where id = #{id, jdbcType=INTEGER}
+  </update>
+  <select id="selectBlogByDynamicSQL5" resultMap="ResultMapWithBLOBs" parameterType="java.util.List">
+  	select * from blog
+  	where id in
+  	<!-- 使用foreach循环语句拼接 -->
+	<foreach item="item" index="index" collection="list"
+      	open="(" separator="," close=")">
+        	#{item, jdbcType=INTEGER}
+  	</foreach>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springdemo.pojo.Blog" >
+    insert into blog (id, authorid, title, 
+      creattime, mainbody)
+    values (#{id,jdbcType=INTEGER}, #{authorid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{creattime,jdbcType=VARCHAR}, #{mainbody,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertBlogByList" useGeneratedKeys="true"
+    keyProperty="id" parameterType="java.util.List">
+  	insert into blog (authorid, title, creattime, mainbody) values
+  	<foreach item="item" collection="list" separator=",">
+    	(#{item.authorid,jdbcType=INTEGER}, #{item.title,jdbcType=VARCHAR}, 
+    	#{item.creattime,jdbcType=VARCHAR}, #{item.mainbody,jdbcType=LONGVARCHAR})
+  	</foreach>
+  </insert> 
+  <insert id="insertSelective" parameterType="com.springdemo.pojo.Blog" >
+    insert into blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="authorid != null" >
+        authorid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+      <if test="mainbody != null" >
+        mainbody,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="authorid != null" >
+        #{authorid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=VARCHAR},
+      </if>
+      <if test="mainbody != null" >
+        #{mainbody,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springdemo.pojo.Blog" >
+    update blog
+    <set >
+      <if test="authorid != null" >
+        authorid = #{authorid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=VARCHAR},
+      </if>
+      <if test="mainbody != null" >
+        mainbody = #{mainbody,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.springdemo.pojo.Blog" >
+    update blog
+    set authorid = #{authorid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      creattime = #{creattime,jdbcType=VARCHAR},
+      mainbody = #{mainbody,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springdemo.pojo.Blog" >
+    update blog
+    set authorid = #{authorid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      creattime = #{creattime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

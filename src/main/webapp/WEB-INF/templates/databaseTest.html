@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="../../static/js/jquery-1.11.3.min.js" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" src="../../static/js/springDemo.js" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" href="../../static/css/springDemo.css" th:href="@{/static/css/springDemo.css}" />
+<title>SpringMVC + Hibernate + Maven</title>
+</head>
+<body>
+	<div>
+        <table id="example1">
+		 <caption>AppPackage</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>platform</th>
+					<th>number</th>
+					<th>size</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="appPackage,appPackageStat:${appPackages}">
+				    <td th:text="${appPackageStat.count}">1</td>
+				    <td th:text="${appPackageStat.index}">0</td>
+					<td th:text="${appPackage.platform}">platform</td>
+					<td th:text="${appPackage.number}">number</td>
+					<td th:text="${appPackage.size}">size</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

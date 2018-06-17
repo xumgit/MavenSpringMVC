@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="../../static/js/jquery-1.11.3.min.js" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" src="../../static/js/springDemo.js" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" href="../../static/css/springDemo.css" th:href="@{/static/css/springDemo.css}" />
+<title>SpringMVC + Hibernate + Maven</title>
+</head>
+<body>
+	<div>
+        <table id="example1">
+		 <caption>UserAppPackageDTO</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+				    <th>name</th>
+					<th>platform</th>
+					<th>number</th>
+					<th>firstName</th>
+					<th>height</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="userAppPackageDTO,userAppPackageDTOStat:${userAppPackageDTOs}">
+				    <td th:text="${userAppPackageDTOStat.count}">1</td>
+				    <td th:text="${userAppPackageDTOStat.index}">0</td>
+				    <td th:text="${userAppPackageDTO.name}">name</td>
+					<td th:text="${userAppPackageDTO.platform}">platform</td>					
+					<td>
+						<span th:if="${userAppPackageDTO.number ne -1}" th:text="${userAppPackageDTO.number}">number</span>
+					</td>
+					<td th:text="${userAppPackageDTO.firstName}">firstName</td>
+					<td>
+						<span th:if="${userAppPackageDTO.height ne -1}" th:text="${userAppPackageDTO.height + 'cm'}">height</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

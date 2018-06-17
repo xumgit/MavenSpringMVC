@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>saveInfo</title>
+</head>
+<body>
+	<div>
+		<table class="example">
+		 <caption>cloneItemStatusList</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>CloneItemName</th>
+					<th>CloneItemVersionNo</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="cloneItemStatus,cloneItemStatusStat:${cloneItemStatusList}">
+				    <td th:text="${cloneItemStatusStat.count}">1</td>
+				    <td th:text="${cloneItemStatusStat.index}">0</td>
+					<td th:each="cloneItem : ${cloneItemStatus}" th:text="${cloneItem.value}">CloneItemName/CloneItemVersionNo</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<table class="example">
+		 <caption>status</caption>
+			<thead>
+				<tr>
+					<th>affectRow</th>
+					<th>tvUniqueID</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr>
+				    <td th:text="${affectRow}">affectRow</td>
+				    <td th:text="${tvUniqueID}">tvUniqueID</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<table class="example">
+		 <caption>upgradeDataList</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>CloneItemName</th>
+					<th>CloneItemVersionNo</th>
+					<th>URL</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="upgradeData,upgradeDataStat:${upgradeDataList}">
+				    <td th:text="${upgradeDataStat.count}">1</td>
+				    <td th:text="${upgradeDataStat.index}">0</td>
+					<td th:each="upgrade : ${upgradeData}" th:text="${upgrade.value}">CloneItemName/CloneItemVersionNo/URL</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

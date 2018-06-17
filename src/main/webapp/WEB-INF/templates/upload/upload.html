@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<link rel="stylesheet" th:href="@{/static/thirdpartyplugin/toastmessage/css/jquery.toastmessage.css}"/>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/toastmessage/jquery.toastmessage.js}"></script>
+<title>upload</title>
+</head>
+<body>
+	<div><!-- th:action="@{/upload/add}" -->
+		<form id="form" method="post" enctype="multipart/form-data">
+			<table class="example">
+		 	<caption>uploadFile</caption>
+				<tbody>
+					<tr>
+				    	<td>file1</td>
+				    	<td>
+				    		<input type="file" name="fileUpload"/>
+				    	</td>
+					</tr>
+					<tr>
+				    	<td>file2</td>
+				    	<td>
+				    		<input type="file" name="fileUpload"/>
+				    	</td>
+					</tr>
+					<tr>
+				    	<td>file3</td>
+				    	<td>
+				    		<input type="file" name="fileUpload"/>
+				    	</td>
+					</tr>
+					<tr>
+				    	<td>file4</td>
+				    	<td>
+				    		<input type="file" name="fileUpload"/>
+				    	</td>
+					</tr>
+					<tr>
+				    	<td>property</td>
+				    	<td>
+				    		<select name="property">
+  								<option value="file">file</option>
+  								<option value="picture">picture</option>
+  								<option value="other">other</option>
+							</select>
+				    	</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<table class="example">
+			<tbody>
+				<tr>
+					<td colspan="2"><button id="submitUpload">upload</button></td>
+				</tr> 
+			</tbody>
+		</table>
+	</div>
+	<br /> <br />
+	<div>
+<!-- 		<table class="example">
+		<caption>uploadFile</caption>
+			<tbody>
+				<tr>
+				    <td>filename</td>
+				    <td>
+				    	<input type="text" name="filename" value="" />
+				    </td>
+				</tr>
+			</tbody>
+		</table> -->
+		<table class="example">
+			<tbody> 
+				<tr>
+					<td>download1</td>
+					<td colspan="2"><a th:href="@{/upload/down(filename=img1.jpg)}">download img1</a></td>
+				</tr>
+				<tr>
+					<td>download2</td>
+					<td colspan="2"><a th:href="@{/upload/down(filename='img2.jpg')}">download img2</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

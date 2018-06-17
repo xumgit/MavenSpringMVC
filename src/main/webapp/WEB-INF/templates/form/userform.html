@@ -1,0 +1,26 @@
+<html  xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8" />
+<title>addForm</title>
+</head>
+<body>
+         <form action="/index/addform" th:action="@{/index/addform}" th:object="${user}" method="post">  
+         	<label for="firstname">firstname:</label>
+  			<input type="text" th:field="*{firstname}" />
+  			<br /> 
+  			<label for="secondname">secondname:</label>
+  			<input type="text" th:field="*{secondname}" /> 
+  			<br />
+  			<label for="age">age:</label>
+  			<input type="number" th:field="*{age}" min="1" max="100" /> 
+  			<br />
+  			<label for="height">height:</label>
+  			<input type="text" th:field="*{height}" /> 
+  			<br />
+  			<label for="birthday">birthday:</label>
+  			<input type="text" th:field="*{birthday}" /> 
+  			<br />
+  			<input type="submit" />  
+		 </form> 
+</body>
+</html>

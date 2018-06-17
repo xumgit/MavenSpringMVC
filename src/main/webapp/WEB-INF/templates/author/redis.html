@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>redis</title>
+</head>
+<body>
+	<div>
+		<table class="example">
+		 <caption>RedisExample</caption>
+			<thead>
+				<tr>
+				    <th>name</th>
+					<th>age</th>
+					<th>email</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="auth,authStat:${author}">
+				    <td th:text="${auth.name}">name</td>
+					<td th:text="${auth.age}">age</td>
+					<td th:text="${auth.email}">email</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html></html>

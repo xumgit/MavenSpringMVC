@@ -1,0 +1,110 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="../../static/js/jquery-1.11.3.min.js" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" src="../../static/js/springDemo.js" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" href="../../static/css/springDemo.css" th:href="@{/static/css/springDemo.css}" />
+<title>Thymeleaf</title>
+</head>
+<body>
+	<div >
+		<table id="example1">
+		 <caption>UserInfo</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>firstname</th>
+					<th>secondname</th>
+					<th>age</th>
+					<th>height</th>
+					<th>birthday</th>
+					<th>image</th>
+					<th>other</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="user,userStat:${userInfo}">
+				    <td th:text="${userStat.count}">1</td>
+				    <td th:text="${userStat.index}">0</td>
+					<td th:text="${user.firstName}">firstName</td>
+					<td th:text="${user.secondName}">secondName</td>
+					<td th:text="${user.age}">age</td>
+					<td th:text="${user.height + 'cm'}">height</td>
+					<!-- <td th:text="${'$' + #numbers.formatDecimal(product.price, 1, 2)}">$123</td> -->
+					<td th:text="${#dates.format(user.birthday, 'yyyy-MM-dd')}">2014-12-01</td>
+					<td th:switch="${user.firstName}">
+						 <img th:case="'first-3'" src="../../static/images/img1.jpg" th:src="@{/static/images/img1.jpg}" alt="img1" /> 
+                         <img th:case="'first-5'" src="../../static/images/img2.jpg" th:src="@{/static/images/img2.jpg}" alt="img2" />
+                         <span th:case="*">Unknown</span>
+					</td>
+					<td>
+						<span th:if="${user.age gt 20}">other situation</span>
+						<span th:if="${user.age le 15} and ${user.secondName == 'second-4'}">
+							<a href="index.html" th:text="${user.secondName} + '-' + ${user.age}" 
+								th:href="@{/index/test(name=${user.secondName}, age=${user.age})}"></a>
+						</span>
+						<span th:if="${user.age gt 16} and ${user.firstName == 'first-8'} and ${user.secondName == 'second-8'}">
+							<a href="index.html" th:text="${user.firstName} + '-' + ${user.secondName}" 
+								th:href="@{/index/query(name=${user.firstName} + '-' + ${user.secondName})}"></a>
+						</span>
+					</td>
+				</tr>
+				<tr>
+				    <td>1</td>
+				    <td>0</td>
+					<td>xx</td>
+					<td>yy</td>
+					<td>36</td>
+					<td>175cm</td>
+					<td>2015-06-16</td>
+					<td><img src="../../static/images/img1.jpg" />
+					<td>other</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="example2">
+		<h2>Arithmetic expressions</h2>
+         <p class="label">Four multiplied by minus six multiplied by minus two module seven:</p>
+         <p class="answer" th:text="${4 * -5 * -2 % 6}">123</p>
+  
+         <h2>Object navigation</h2>
+         <p class="label">Description field of paymentMethod field of the third element of customerList bean:</p>
+         <p class="answer" th:text="${userInfo[2].firstName}">Credit card</p>
+  
+         <h2>Object instantiation</h2>
+         <p class="label">Current time milliseconds:</p>
+         <p class="answer" th:text="${new java.util.Date().getTime()}">22-Jun-2013</p>
+         
+         <h2>T operator</h2>
+         <p class="label">Random number:</p>
+         <p class="answer" th:text="${T(java.lang.Math).random()}">123456</p>
+	</div>
+	<div id="example3">
+		 <form action="/index/form" th:action="@{/index/form}" method="post">        
+             <label for="username">username:</label>
+             <input type="text" name="username" value="" />
+             <br />
+             <label for="password">password:</label>
+             <input type="text" name="password" value="" />
+             <br />
+             <input type="submit" />
+         </form>
+         <br />
+	</div>
+	<div id="example4">
+		<textarea id="body" name="body" th:inline="text">
+			Dear [[${userInfo[2].firstName + userInfo[2].secondName}]],
+				it is our sincere pleasure to congratulate your in your birthday:
+  				Happy birthday [[${userInfo[2].firstName + userInfo[2].secondName}]]!!!
+		 		See you soon, [[${userInfo[2].firstName + userInfo[2].secondName}]].
+			Regards,
+  			The Thymeleaf team
+		</textarea>
+		<br />
+		<div th:text="#{language.welcome}"></div>
+		<div th:text="${#locale}"></div>
+	</div>
+</body>
+</html>

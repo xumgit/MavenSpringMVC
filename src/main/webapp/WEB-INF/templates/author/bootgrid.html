@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/js/loader.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{/static/thirdpartyplugin/bootstrap-3.3.7-dist/css/bootstrap.min.css}"/>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{/static/thirdpartyplugin/dist/jquery.bootgrid.min.css}"/>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/dist/jquery.bootgrid.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/dist/jquery.bootgrid.fa.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{/static/thirdpartyplugin/bootstrap-select-1.12.4/css/bootstrap-select.min.css}"/>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/bootstrap-select-1.12.4/js/bootstrap-select.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{/static/thirdpartyplugin/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css}"/>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{/static/thirdpartyplugin/toastmessage/css/jquery.toastmessage.css}"/>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/toastmessage/jquery.toastmessage.js}"></script>
+
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/js/moderniz.2.8.1.js}"></script>
+<script type="text/javascript" th:src="@{/static/thirdpartyplugin/js/keyboardEvent.js}"></script>
+
+<link rel="stylesheet" th:href="@{/static/thirdpartyplugin/jquery-ui-1.12.1.custom/jquery-ui.min.css}"/>
+<link rel="stylesheet" th:src="@{/static/thirdpartyplugin/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css}"/>
+<script th:src="@{/static/thirdpartyplugin/jquery-ui-1.12.1.custom/jquery-ui.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/blog.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>SpringMVC + Mybatis + Spring + BootGrid</title>
+</head>
+<body>
+	<div id="data">
+		<table id="grid-data" class="table table-condensed table-hover table-striped">
+			<thead>
+				<tr>
+					<th data-column-id="id" data-order="desc" data-type="numeric">ID</th>
+					<th data-column-id="name">Name</th>
+					<th data-column-id="age" data-order="desc">Age</th>
+					<th data-column-id="email" data-formatter="email" data-sortable="false">Email</th>
+					<th data-column-id="country" data-sortable="false">Country</th>
+					<th data-column-id="clone" data-width="100px" data-height="70px" data-align="center" data-sortable="false">Clone</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>

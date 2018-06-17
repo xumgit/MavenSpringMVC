@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springdemo.dao.PluginMapper" >
+  <resultMap id="BaseResultMap" type="com.springdemo.pojo.Plugin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sender" property="sender" jdbcType="VARCHAR" />
+    <result column="received" property="received" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="hidden" property="hidden" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sender, received, link, status, hidden
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plugin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plugin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springdemo.pojo.Plugin" >
+    insert into plugin (id, sender, received, 
+      link, status, hidden
+      )
+    values (#{id,jdbcType=INTEGER}, #{sender,jdbcType=VARCHAR}, #{received,jdbcType=VARCHAR}, 
+      #{link,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{hidden,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.springdemo.pojo.Plugin" >
+    insert into plugin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sender != null" >
+        sender,
+      </if>
+      <if test="received != null" >
+        received,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="hidden != null" >
+        hidden,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sender != null" >
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="received != null" >
+        #{received,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null" >
+        #{hidden,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springdemo.pojo.Plugin" >
+    update plugin
+    <set >
+      <if test="sender != null" >
+        sender = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="received != null" >
+        received = #{received,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null" >
+        hidden = #{hidden,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springdemo.pojo.Plugin" >
+    update plugin
+    set sender = #{sender,jdbcType=VARCHAR},
+      received = #{received,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      hidden = #{hidden,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>saveInfo</title>
+</head>
+<body>
+	<div>
+		<table class="example">
+		 <caption>Status</caption>
+			<thead>
+				<tr>
+				    <th>step</th>
+					<th>affectRow</th>
+					<th>timeConsume</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr>
+				    <td th:text="${step}">first</td>
+					<td th:text="${affectRow}">affectRow</td>
+					<td th:text="${timeConsume + 'ms'}">timeConsume</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/blog.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>SpringMVC + Mybatis + Spring</title>
+</head>
+<body>
+	<div>
+        <table class="example">
+		 <caption>BlogDynamicSQL1</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+				    <th>blog_id</th>
+				    <th>blog_author_id</th>
+					<th>blog_title</th>
+					<th>blog_mainbody</th>
+					<th>blog_creattime</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="blog,blogStat:${blogByDynamicSQL1}">
+				    <td th:text="${blogStat.count}">1</td>
+				    <td th:text="${blogStat.index}">0</td>
+				    <td th:text="${blog.id}">id</td>
+				    <td th:text="${blog.authorid}">authorid</td>
+					<td th:text="${blog.title}">title</td>
+					<td th:text="${blog.mainbody}">mainbody</td>
+					<td th:text="${blog.creattime}">creattime</td>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+        <table class="example">
+		 <caption>BlogDynamicSQL2</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+				    <th>blog_id</th>
+				    <th>blog_author_id</th>
+					<th>blog_title</th>
+					<th>blog_mainbody</th>
+					<th>blog_creattime</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="blog,blogStat:${blogByDynamicSQL2}">
+				    <td th:text="${blogStat.count}">1</td>
+				    <td th:text="${blogStat.index}">0</td>
+				    <td th:text="${blog.id}">id</td>
+				    <td th:text="${blog.authorid}">authorid</td>
+					<td th:text="${blog.title}">title</td>
+					<td th:text="${blog.mainbody}">mainbody</td>
+					<td th:text="${blog.creattime}">creattime</td>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+        <table class="example">
+		 <caption>BlogDynamicSQL3</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+				    <th>blog_id</th>
+				    <th>blog_author_id</th>
+					<th>blog_title</th>
+					<th>blog_mainbody</th>
+					<th>blog_creattime</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="blog,blogStat:${blogByDynamicSQL3}">
+				    <td th:text="${blogStat.count}">1</td>
+				    <td th:text="${blogStat.index}">0</td>
+				    <td th:text="${blog.id}">id</td>
+				    <td th:text="${blog.authorid}">authorid</td>
+					<td th:text="${blog.title}">title</td>
+					<td th:text="${blog.mainbody}">mainbody</td>
+					<td th:text="${blog.creattime}">creattime</td>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+        <table class="example">
+		 <caption>BlogDynamicSQL5</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+				    <th>blog_id</th>
+				    <th>blog_author_id</th>
+					<th>blog_title</th>
+					<th>blog_mainbody</th>
+					<th>blog_creattime</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="blog,blogStat:${blogByDynamicSQL5}">
+				    <td th:text="${blogStat.count}">1</td>
+				    <td th:text="${blogStat.index}">0</td>
+				    <td th:text="${blog.id}">id</td>
+				    <td th:text="${blog.authorid}">authorid</td>
+					<td th:text="${blog.title}">title</td>
+					<td th:text="${blog.mainbody}">mainbody</td>
+					<td th:text="${blog.creattime}">creattime</td>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+#form {
+	margin: 20px 30px 40px 50px;
+}
+
+table#example1, table#example1 th, table#example1 td  {
+	margin: 0 auto;
+	border: 1px solid #ff0000;
+	border-collapse: collapse;
+	text-align: center;
+	
+}
+
+table tr th {
+	font-weight: bolder;
+}
+
+table.example, table.example th, table.example td  {
+	margin: 0 auto;
+	border: 1px solid #ff0000;
+	border-collapse: collapse;
+	text-align: center;
+	
+}
+
+div.example p, div.example a {
+	margin: 0 auto;
+	text-align: center;
+}
+
+table#example1 td img  {
+	height: 70px;
+	width: 70px;
+}
+
+div#example2, div#example3, div#example4 {
+	margin-top: 10px;
+	border: 1px solid #ff0000;
+}
+
+div#example4 textarea {
+	width: 400px;
+	height: 100px;
+}
+
+select#authorname {
+	width: 150px;
+}
+
+div#data {
+	margin: 0 auto;
+	margin: 10px;
+	border: 1px solid #ff0000;
+}
+
+div#request {
+	margin: 0 auto;
+	text-align: center;
+}

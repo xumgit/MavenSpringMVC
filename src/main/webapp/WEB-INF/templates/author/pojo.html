@@ -1,0 +1,99 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/springDemo.css}" />
+<title>SpringMVC + Mybatis + Spring</title>
+</head>
+<body>
+    <div id="request">
+    		<button id="requestExample">click</button><br />
+    		<span id="responseResult"></span>
+    </div>
+    <br />
+	<div>
+        <table class="example">
+		 <caption>Author one</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>id</th>
+					<th>name</th>
+					<th>age</th>
+					<th>email</th>
+					<th>country</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="authorList,authorListStat:${authorListOne}">
+				    <td th:text="${authorListStat.count}">1</td>
+				    <td th:text="${authorListStat.index}">0</td>
+					<td th:text="${authorList.id}">id</td>
+					<td th:text="${authorList.name}">name</td>
+					<td th:text="${authorList.age}">age</td>
+					<td th:text="${authorList.email}">email</td>
+					<td th:text="${authorList.country}">country</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div>
+        <table class="example">
+		 <caption>Author Two</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>id</th>
+					<th>name</th>
+					<th>age</th>
+					<th>email</th>
+					<th>country</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="authorList,authorListStat:${authorListTwo}">
+				    <td th:text="${authorListStat.count}">1</td>
+				    <td th:text="${authorListStat.index}">0</td>
+					<td th:text="${authorList.id}">id</td>
+					<td th:text="${authorList.name}">name</td>
+					<td th:text="${authorList.age}">age</td>
+					<td th:text="${authorList.email}">email</td>
+					<td th:text="${authorList.country}">country</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div>
+        <table class="example">
+		 <caption>Author Three</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>id</th>
+					<th>name</th>
+					<th>age</th>
+					<th>email</th>
+					<th>country</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="authorList,authorListStat:${authorListThree}">
+				    <td th:text="${authorListStat.count}">1</td>
+				    <td th:text="${authorListStat.index}">0</td>
+					<td th:text="${authorList.id}">id</td>
+					<td th:text="${authorList.name}">name</td>
+					<td th:text="${authorList.age}">age</td>
+					<td th:text="${authorList.email}">email</td>
+					<td th:text="${authorList.country}">country</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

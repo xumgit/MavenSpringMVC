@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="../../static/js/jquery-1.11.3.min.js" th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" src="../../static/js/springDemo.js" th:src="@{/static/js/springDemo.js}"></script>
+<link rel="stylesheet" href="../../static/css/springDemo.css" th:href="@{/static/css/springDemo.css}" />
+<title>SpringMVC + Mybatis + Maven</title>
+</head>
+<body>
+	<div>
+		<table id="example1">
+		 <caption>Plugin</caption>
+			<thead>
+				<tr>
+				    <th>number</th>
+				    <th>index</th>
+					<th>id</th>
+					<th>sender</th>
+					<th>received</th>
+					<th>link</th>
+					<th>status</th>
+					<th>hidden</th>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr th:each="plugin,pluginStat:${plugins}">
+				    <td th:text="${pluginStat.count}">1</td>
+				    <td th:text="${pluginStat.index}">0</td>
+					<td th:text="${plugin.id}">id</td>
+					<td th:text="${plugin.sender}">sender</td>
+					<td th:text="${plugin.received}">received</td>
+					<td th:text="${plugin.link}">link</td>
+					<td th:text="${plugin.status}">status</td>
+					<td th:text="${plugin.hidden}">hidden</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
